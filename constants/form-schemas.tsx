@@ -11,5 +11,22 @@ export const signUpFormSchema = z.object({
   password: z.string().min(8, { message: "Password must be at least 8 characters" }),
 })
 
+export const forgotPasswordFormSchema = z.object({
+  otp: z.string().min(4, {
+    message: "OTP must be at least 4 characters.",
+  }),
+})
+
+export const createNewPasswordFormSchema = z.object({
+  password: z.string().min(8, {
+    message: "Password must be at least 8 characters.",
+  }),
+  confirmPassword: z.string().min(8, {
+    message: "Password must be at least 8 characters.",
+  }),
+})
+
 export type SingInFormValue = z.infer<typeof signInFormSchema>;
 export type SingUpFormValue = z.infer<typeof signUpFormSchema>;
+export type ForgotPasswordFormValue = z.infer<typeof forgotPasswordFormSchema>;
+export type CreateNewPasswordFormValue = z.infer<typeof createNewPasswordFormSchema>;
