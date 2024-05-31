@@ -1,9 +1,11 @@
-import Logo from "@/components/shared/logo";
-import { cn } from "@/lib/utils";
+import React from "react";
 import type { Metadata } from "next";
 import { Epilogue as FontSans } from "next/font/google";
-import React from "react";
 import "../globals.css";
+import { cn } from "@/lib/utils";
+
+import Logo from "@/components/shared/logo";
+import { FormProvider } from "@/components/contexts/form-context";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -28,7 +30,9 @@ export default function AuhtLayout({
         <div className="p-6 lg:p-10 relative w-full min-h-screen flex items-center justify-center overflow-hidden isolate">
           <Logo className="inline-block absolute top-6 left-6 lg:top-10 lg:left-10 w-10 h-10 lg:w-[52px] lg:h-[52px]" />
           <div className="hidden z-10 lg:block absolute bg-secondary-400/5 dark:bg-primary-500/5 w-[2838px] h-[2838px] rounded-full top-[528px] -left-[418px]" />
-          {children}
+          <FormProvider>
+            {children}
+          </FormProvider>
         </div>
       </body>
     </html>

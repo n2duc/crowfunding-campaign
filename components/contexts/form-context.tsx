@@ -20,6 +20,7 @@ interface IProps {
 
 export function FormProvider({ children }: IProps) {
   const [step, setStep] = useState(1);
+  const [formState, setFormState] = useState({});
 
   function nextStep() {
     setStep((prev) => prev + 1);

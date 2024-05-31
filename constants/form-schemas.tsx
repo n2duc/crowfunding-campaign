@@ -11,7 +11,7 @@ export const signUpFormSchema = z.object({
   password: z.string().min(8, { message: "Password must be at least 8 characters" }),
 })
 
-export const forgotPasswordFormSchema = z.object({
+export const otpCodeSchema = z.object({
   otp: z.string().min(4, {
     message: "OTP must be at least 4 characters.",
   }),
@@ -24,9 +24,17 @@ export const createNewPasswordFormSchema = z.object({
   confirmPassword: z.string().min(8, {
     message: "Password must be at least 8 characters.",
   }),
+}).superRefine(({ password, confirmPassword }, ctx) => {
+  if (confirmPassword !== password) {
+    ctx.addIssue({
+      code: "custom",
+      message: "Passwords do not match.",
+      path: ["confirmPassword"],
+    });
+  }
 })
 
 export type SingInFormValue = z.infer<typeof signInFormSchema>;
 export type SingUpFormValue = z.infer<typeof signUpFormSchema>;
-export type ForgotPasswordFormValue = z.infer<typeof forgotPasswordFormSchema>;
+export type OTPCodeFormValue = z.infer<typeof otpCodeSchema>;
 export type CreateNewPasswordFormValue = z.infer<typeof createNewPasswordFormSchema>;

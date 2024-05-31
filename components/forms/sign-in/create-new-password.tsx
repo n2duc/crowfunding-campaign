@@ -41,10 +41,10 @@ const CreateNewPasswordForm = () => {
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="w-full">
             <div className="w-full space-y-[10px]">
-              <h1 className="text-[20px] lg:text-2xl font-bold text-text-text1">
+              <h1 className="text-[20px] lg:text-2xl font-bold text-text-text1 dark:text-white">
                 Create New Password
               </h1>
-              <p className="text-text-text4 text-xs lg:text-sm max-w-[300px]">
+              <p className="text-text-text4 text-xs lg:text-sm max-w-[300px] dark:text-text-text3">
                 Your new password must be different from previous used
                 passwords.
               </p>
@@ -53,7 +53,7 @@ const CreateNewPasswordForm = () => {
                 name="password"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>New Password*</FormLabel>
+                    <FormLabel className="inline-block text-sm font-medium pt-2 lg:pt-[10px]">New Password*</FormLabel>
                     <FormControl>
                       <Input placeholder="New Password" type="password" {...field} />
                     </FormControl>
@@ -66,7 +66,7 @@ const CreateNewPasswordForm = () => {
                 name="confirmPassword"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Confirm Password*</FormLabel>
+                    <FormLabel className="inline-block text-sm font-medium pt-2 lg:pt-[10px]">Confirm Password*</FormLabel>
                     <FormControl>
                       <Input placeholder="Confirm Password" type="password" {...field} />
                     </FormControl>
@@ -87,8 +87,8 @@ const CreateNewPasswordForm = () => {
         <>
           <div className="w-full flex flex-col items-center gap-4">
             <Image src="/clap.svg" alt="clap icon" width={46} height={46} className="w-10 h-10 lg:w-11 lg:h-11" />
-            <h1 className="text-xl lg:text-2xl font-bold text-center text-text-text1">Password reset successful</h1>
-            <p className="text-xs text-text-text4 text-center">You can now use your new password to log in to your account</p>
+            <h1 className="text-xl lg:text-2xl font-bold text-center text-text-text1 dark:text-white">Password reset successful</h1>
+            <p className="text-xs text-text-text4 dark:text-text-text3 text-center">You can now use your new password to log in to your account</p>
           </div>
           <Link href="/" className="w-full lg:mt-4 mt-3 bg-primary-500 text-white text-base font-semibold text-center p-[13px] rounded-[10px]">Go to homepage</Link>
         </>

@@ -11,26 +11,25 @@ import {
   FormItem,
   FormMessage,
 } from "../../ui/form"
-import { Input } from "../../ui/input"
 import {
   InputOTP,
   InputOTPGroup,
   InputOTPSlot,
 } from "@/components/ui/input-otp";
 
-import { forgotPasswordFormSchema, ForgotPasswordFormValue } from "@/constants/form-schemas";
+import { otpCodeSchema, OTPCodeFormValue } from "@/constants/form-schemas";
 
 const ForgotPasswordForm = () => {
   const { prevStep, nextStep } = useFormState();
 
-  const form = useForm<ForgotPasswordFormValue>({
-    resolver: zodResolver(forgotPasswordFormSchema),
+  const form = useForm<OTPCodeFormValue>({
+    resolver: zodResolver(otpCodeSchema),
     defaultValues: {
       otp: "",
     },
   })
 
-  const onSubmit = (data: ForgotPasswordFormValue) => {
+  const onSubmit = (data: OTPCodeFormValue) => {
     console.log(data)
     nextStep();
   }
@@ -38,10 +37,10 @@ const ForgotPasswordForm = () => {
   return (
     <div className="w-full max-w-[455px] flex flex-col items-start lg:gap-4 gap-5 px-5 py-[30px] lg:px-[60px] lg:py-[50px] rounded-[10px] bg-whitish-pure dark:bg-dark-secondary z-20 shadow-sm">
       <div className="">
-        <h1 className="text-2xl font-bold text-text-text1">Forgot Password</h1>
+        <h1 className="text-2xl font-bold text-text-text1 dark:text-white">Forgot Password</h1>
         <div className="mt-[10px] lg:mt-5">
-          <p className="text-sm text-text-text4">Please Enter the OTP you receive to</p>
-          <p className="text-sm text-text-text2 font-medium">hellouihut@gmail.com</p>
+          <p className="text-sm text-text-text4 dark:text-text-text3">Please Enter the OTP you receive to</p>
+          <p className="text-sm text-text-text2 font-medium dark:text-white">hellouihut@gmail.com</p>
         </div>
       </div>
       <Form {...form}>
@@ -67,9 +66,9 @@ const ForgotPasswordForm = () => {
           />
           <p className="text-sm text-secondary-300 font-semibold cursor-pointer">Resent OTP</p>
           <Button type="submit" className="w-full text-base font-semibold">Confirm</Button>
-          <Button type="button" variant="ghost" className="text-secondary-300 font-semibold text-sm" onClick={prevStep}>
-            <ChevronLeft className="h-5 w-5 mr-[10px]" /> Back to login
-          </Button>
+          <div className="flex items-center gap-[10px] text-secondary-300 font-semibold text-sm p-2 cursor-pointer" onClick={prevStep}>
+            <ChevronLeft className="h-5 w-5" /> Back to login
+          </div>
         </form>
       </Form>
     </div>
