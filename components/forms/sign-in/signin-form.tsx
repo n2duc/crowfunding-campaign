@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form";
+import { useRouter } from 'next/navigation';
 
 import { Button } from "@/components/ui/button";
 import {
@@ -19,6 +20,7 @@ import { signInFormSchema, SingInFormValue } from "@/constants/form-schemas";
 import { useFormState } from "../../contexts/form-context";
 
 const SignInForm = () => {
+  const router = useRouter();
   const { nextStep } = useFormState();
 
   const form = useForm<SingInFormValue>({
@@ -30,7 +32,10 @@ const SignInForm = () => {
   })
 
   const onSubmit = (data: SingInFormValue) => {
-    console.log(data)
+    console.log(data);
+    if (data) {
+      router.push('/');
+    }
   }
 
   return (

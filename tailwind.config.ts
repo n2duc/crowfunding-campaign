@@ -69,6 +69,7 @@ const config = {
           "stroke": "#F1F1F3",
           "lite": "#FCFCFD",
         },
+        icon: "#A2A2A8",
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
           foreground: "hsl(var(--destructive-foreground))",
@@ -114,6 +115,10 @@ const config = {
         "accordion-up": "accordion-up 0.2s ease-out",
         "caret-blink": "caret-blink 1.25s ease-out infinite",
       },
+      boxShadow: {
+        "btnLight": "10px 10px 20px 0px rgba(211, 211, 211, 0.25)",
+        "btnDark": "10px 10px 20px 0px rgba(2, 2, 2, 0.25)",
+      }
     },
   },
   plugins: [require("tailwindcss-animate")],

@@ -1,11 +1,16 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Epilogue as FontSans } from "next/font/google";
 import "../globals.css";
 import { ThemeProvider } from "@/components/contexts/theme-provider";
+import { cn } from "@/lib/utils";
 import Sidebar from "@/components/shared/sidebar";
 import Navbar from "@/components/shared/navbar";
+import ProgressProvider from "@/components/shared/progess-bar";
 
-const inter = Inter({ subsets: ["latin"] });
+const fontSans = FontSans({
+  subsets: ["latin"],
+  variable: "--font-sans",
+})
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -19,22 +24,24 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
+      <body className={cn("font-sans bg-whitish-lite dark:bg-dark-bg", fontSans.variable)}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
-          disableTransitionOnChange
+          // disableTransitionOnChange
         >
-          <div className="relative sm:p-8 p-4 bg-whitish-lite dark:bg-dark-bg min-h-screen flex flex-row">
-            <div className="sm:flex hidden mr-10 relative">
-              <Sidebar />
+          <ProgressProvider>
+            <div className="relative sm:p-8 p-6 bg-whitish-lite dark:bg-dark-bg min-h-screen flex flex-row">
+              <div className="sm:flex hidden mr-10 relative">
+                <Sidebar />
+              </div>
+              <div className="flex-1 w-full mx-auto">
+                <Navbar />
+                {children}
+              </div>
             </div>
-            <div className="flex-1 max-sm:w-full max-w-[1280px] mx-auto sm:pr-5">
-              <Navbar />
-              {children}
-            </div>
-          </div>
+          </ProgressProvider>
         </ThemeProvider>
       </body>
     </html>
